@@ -1,19 +1,36 @@
-function main() {
-  const CONTAINER_SIZE = 800;
+function changeGrid(container) {
+  const newSize = +prompt("Enter new number of squares per side: (max 100)");
+  container.replaceChildren();
+  paintGrid(container, newSize);
+}
 
-  const container = document.querySelector("#container");
-  let gridSize = 16;
-
+function paintGrid(container, gridSize) {
+  const pixels = [];
   for (let i = 0; i < gridSize**2; i++) {
     const pixel = document.createElement("div");
-    const pixelSize = CONTAINER_SIZE / gridSize;
+    const pixelSize = container.offsetWidth / gridSize;
     pixel.style.cssText = `min-width: ${pixelSize}px; height: ${pixelSize}px;`;
     pixel.classList.add("pixel");
     pixel.addEventListener("mouseover", () => {
       pixel.classList.add("hovered");
     });
+    pixels.push(pixel);
+  }
+  for (pixel of pixels) {
     container.appendChild(pixel);
   }
+}
+
+function main() {
+  const DEFAULT_GRID_SIZE = 16;
+
+  const button = document.querySelector("#title button");
+  const container = document.querySelector("#container");
+
+  button.addEventListener("click", () => {
+    changeGrid(container);
+  });
+  paintGrid(container, DEFAULT_GRID_SIZE);
 }
 
 main()
