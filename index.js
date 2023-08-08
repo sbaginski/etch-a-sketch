@@ -9,6 +9,9 @@ function main() {
     const pixelSize = CONTAINER_SIZE / gridSize;
     pixel.style.cssText = `min-width: ${pixelSize}px; height: ${pixelSize}px;`;
     pixel.classList.add("pixel");
+    pixel.addEventListener("mouseover", () => {
+      pixel.classList.add("hovered");
+    });
     container.appendChild(pixel);
   }
 }

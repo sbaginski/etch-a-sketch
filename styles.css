@@ -20,6 +20,10 @@ h1 {
   padding: 0;
 }
 
+.hovered {
+  background-color: cyan;
+}
+
 .pixel {
   flex: 1 0 auto;
 }
