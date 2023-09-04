@@ -12,7 +12,8 @@ function paintGrid(container, gridSize) {
     pixel.style.cssText = `min-width: ${pixelSize}px; height: ${pixelSize}px;`;
     pixel.classList.add("pixel");
     pixel.addEventListener("mouseover", () => {
-      pixel.classList.add("hovered");
+      const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      pixel.style.backgroundColor = color;
     });
     pixels.push(pixel);
   }
