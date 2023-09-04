@@ -12,8 +12,21 @@ function paintGrid(container, gridSize) {
     pixel.style.cssText = `min-width: ${pixelSize}px; height: ${pixelSize}px;`;
     pixel.classList.add("pixel");
     pixel.addEventListener("mouseover", () => {
-      const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-      pixel.style.backgroundColor = color;
+      if (pixel.classList.contains("hovered")) {
+        let color = pixel.style.backgroundColor;
+        const rgb = color.split(",");
+        for (let i = 0; i < rgb.length; i++) {
+          rgb[i] = +rgb[i].replace(/\D/g, "");
+          rgb[i] -= 26;
+        }
+        pixel.style.backgroundColor = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+      } else {
+        const r = Math.floor(Math.random() * 255).toString();
+        const g = Math.floor(Math.random() * 255).toString();
+        const b = Math.floor(Math.random() * 255).toString();
+        pixel.style.backgroundColor = `rgb(${r},${g},${b})`;
+        pixel.classList.add("hovered");
+      }
     });
     pixels.push(pixel);
   }
